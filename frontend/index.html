@@ -4,16 +4,16 @@
     <title>DevOps Lab</title>
 </head>
 <body>
-    <h1>To jest Frontend (Nginx)</h1>
-    <p id="message">Czekam na dane z backendu...</p>
+    <h1>This is frontend</h1>
+    <p id="message">Waiting for backend...</p>
 
     <script>
-        fetch('http://localhost:5000/')
+        fetch('http://localhost:5001/')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('message').innerText = data;
             })
-            .catch(error => console.error('Błąd:', error));
+            .catch(error => console.error('Error:', error));
     </script>
 </body>
 </html>
