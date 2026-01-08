@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DevOps Lab</title>
+</head>
+<body>
+    <h1>To jest Frontend (Nginx)</h1>
+    <p id="message">Czekam na dane z backendu...</p>
+
+    <script>
+        fetch('http://localhost:5000/')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('message').innerText = data;
+            })
+            .catch(error => console.error('Błąd:', error));
+    </script>
+</body>
+</html>
