@@ -1,0 +1,45 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  check-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobranie kodu
+        uses: actions/checkout@v3
+
+      - name: Test budowania obrazów (Docker Compose)
+        run: docker-compose build
+
+  deploy-frontend:
+    needs: check-docker
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Pobranie kodu
+        uses: actions/checkout@v3
+
+      - name: Konfiguracja Pages
+        uses: actions/configure-pages@v3
+
+      - name: Przygotowanie artefaktu (Build)
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: './frontend'
+
+      - name: Publikacja na GitHub Pages (Deploy)
+        id: deployment
+        uses: actions/deploy-pages@v2
