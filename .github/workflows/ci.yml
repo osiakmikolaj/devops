@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pobranie kodu
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Test budowania obrazów (Docker Compose)
         run: docker compose build
@@ -30,16 +30,16 @@ jobs:
 
     steps:
       - name: Pobranie kodu
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Konfiguracja Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v5
 
       - name: Przygotowanie artefaktu (Build)
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './frontend'
 
       - name: Publikacja na GitHub Pages (Deploy)
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
