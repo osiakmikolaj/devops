@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Test budowania obrazów (Docker Compose)
-        run: docker-compose build
+        run: docker compose build
 
   deploy-frontend:
     needs: check-docker
